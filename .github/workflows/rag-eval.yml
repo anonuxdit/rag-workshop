@@ -27,3 +27,9 @@ jobs:
       # rag.evaluate เขียนตารางผลลง $GITHUB_STEP_SUMMARY เอง จึงขึ้นใน Job Summary
       - name: Evaluate retrieval (dev)
         run: python -m rag.evaluate --split dev --method tfidf -k 4 --min-hit 0.9
+
+      - name: Run W4 tests
+        run: pytest -q -m w4
+
+      - name: Evaluate hybrid retrieval (dev)
+        run: python -m rag.evaluate --split dev --method hybrid -k 4 --min-hit 0.9
